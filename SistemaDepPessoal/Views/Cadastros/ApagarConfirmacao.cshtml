@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Confirmação apagar o funcionário";
+}
+
+<div class="text-center">
+    <h3>Realmente deseja apagar o funcionario (Fulano Maximus)</h3>
+</div>
+<br />
+
+<div class="text-center">
+    <input class="form-check-input" type="checkbox" id="invalidCheck2" required>
+    <label class="form-check-label" for="invalidCheck2">
+        Confirmo que desejo excluir
+    </label>
+    <br />
+    <br />
+    <a class="btn btn-primary" role="button" asp-controller="Cadastros" asp-action="Index">Cancelar exclusão</a>
+    <a class="btn btn-danger" role="button">Confirmar exclusão</a>
+</div>
+
+
+

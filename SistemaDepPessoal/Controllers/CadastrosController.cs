@@ -1,12 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SistemaDepPessoal.Models;
+using SistemaDepPessoal.Repositorio;
 
 namespace SistemaDepPessoal.Controllers
 {
     public class CadastrosController : Controller
     {
+        private readonly ICadastroRepositorio _cadastroRepositorio;
+        public CadastrosController(ICadastroRepositorio cadastroRepositorio)
+        {
+            _cadastroRepositorio = cadastroRepositorio;
+        }
+
         public IActionResult Index()
         {
-            return View();
+            var cadastros = _cadastroRepositorio.BuscarTodos();
+            return View(cadastros);
         }
 
         public IActionResult Criar()
@@ -14,14 +23,31 @@ namespace SistemaDepPessoal.Controllers
             return View();
         }
 
-        public IActionResult Editar()
+        public IActionResult Editar(int id)
         {
-            return View();
+            CadastroModel cadastro = _cadastroRepositorio.ListarPorId(id);
+            return View(cadastro);
         }
 
-        public IActionResult ApagarConfirmacao()
+        public IActionResult ApagarConfirmacao(int id)
         {
-            return View();
+            CadastroModel cadastro = _cadastroRepositorio.ListarPorId(id);
+
+            return View(cadastro);
+        }
+
+        [HttpPost]
+        public IActionResult Criar(CadastroModel cadastro)
+        {
+            _cadastroRepositorio.Adicionar(cadastro);
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public IActionResult Alterar(CadastroModel cadastro)
+        {
+            _cadastroRepositorio.Atualizar(cadastro);
+            return RedirectToAction("Index");
         }
     }
 }

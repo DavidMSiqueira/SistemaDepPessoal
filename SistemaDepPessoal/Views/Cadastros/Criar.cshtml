@@ -1,37 +1,48 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model CadastroModel
 @{
     ViewData["Title"] = "Cadastro de funcionário";
 }
+<h1 style="text-align: center">Cadastrar novo funcionário</h1>
+<div id="teste" class="text-center  col-md-12">
 
-<div class="text-center">
-    <h1>Cadastrar novo funcionário</h1>
-    <form class="row g-3">
-        <div class="col-md-4">
+    <form class="row g-3" asp-controller="Cadastros" asp-action="Criar" method="post">
+        <div class="col-md-3">
             <label for="validationDefault01" class="form-label">Nome</label>
-            <input type="text" class="form-control" id="validationDefault01" placeholder="Fulano" required>
+            <input type="text" asp-for="Name" class="form-control" id="validationDefault01" placeholder="Fulano" required>
         </div>
         <div class="col-md-3">
             <label for="validationDefault02" class="form-label">Sobrenome</label>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="Maximus" required>
+            <input type="text" asp-for="Last_Name" class="form-control" id="validationDefault02" placeholder="Maximus" required>
         </div>
         <div class="col-md-3">
-            <label for="validationDefault02" class="form-label">Setor</label>
-            <input type="text" class="form-control" id="validationDefault03" value="" required>
+            <label for="validationDefault03" class="form-label">CPF</label>
+            <input type="text" asp-for="CPF" class="form-control" id="validationDefault03" onkeypress="$(this).mask('000.000.000-00');" required>
         </div>
-        <div class="col-md-4">
-            <label for="validationDefault03" class="form-label">Função</label>
-            <input type="text" class="form-control" id="validationDefault04" required>
+        <div class="col-md-3 form-group">
+            <label for="validationDefault04" class="form-label">Cargo</label>
+            <select type="text" asp-for="Cargo" class="form-control" id="validationDefault03" value="" required>
+                <option>Diretor</option>
+                <option>Gerente</option>
+                <option>Gestor</option>
+            </select>
         </div>
         <div class="col-md-3">
-            <label for="validationDefault03" class="form-label">Idade</label>
-            <input type="number" class="form-control" id="validationDefault05" required>
+            <label for="validationDefault05" class="form-label">Setor</label>
+            <input type="text" asp-for="Setor" class="form-control" id="validationDefault04" required>
         </div>
         <div class="col-md-3">
-            <label for="validationDefault05" class="form-label">Salário</label>
-            <input type="number" class="form-control" id="validationDefault06" required>
+            <label for="validationDefault06" class="form-label">Idade</label>
+            <input type="number" asp-for="Idade" class="form-control" id="validationDefault05" required>
         </div>
+        <div class="col-md-3">
+            <label for="validationDefault07" class="form-label">Salário</label>
+            <input type="text" asp-for="Salario" class="form-control" id="validationDefault06" onkeypress="$(this).mask('0.000,00');" required>
+        </div>
+        <!--<div class="col-md-3">
+            <label for="validationDefault7" class="form-label">Data de Inicio</label>
+            <input type="text" asp-for="Data_Inicio" class="form-control" id="validationDefault7" onkeypress="$(this).mask('00/00/0000');" placeholder="11/11/2000"/>
+        </div>-->
+        <hr></hr> <!--Tem que concertar isso pq ta feio-->
         <div class="col-3">
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="invalidCheck2" required>
@@ -46,3 +57,5 @@
         </div>
     </form>
 </div>
+
+

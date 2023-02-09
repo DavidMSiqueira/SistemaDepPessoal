@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<CadastroModel>
+@{
     ViewData["Title"] = "Funcionários";
 }
 
@@ -12,34 +13,43 @@
         <thead>
             <tr>
                 <th>Nome</th>
-                <th>Posição</th>
-                <th>Setor</th>
+                <th>Sobrenomeo</th>
                 <th>Idade</th>
-                <th>Data de Inicio</th>
+                <th>CPF</th>
                 <th>Salario</th>
-                <th class="text-center">Ação</th>
+                <th>Cargo</th>
+                <th>Setor</th>
+                <th>Data de Inicio</th>              
+                <!--<th class="text-center">Ação</th>-->
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Tiger Nixon</td>
-                <td>System Architect</td>
-                <td>Edinburgh</td>
-                <td>61</td>
-                <td>2011-04-25</td>
-                <td>$320,800</td>
-                <td>
-                    <div class="btn-group" role="group">
-                        <a role="button" class="btn btn-primary">Editar</a>
-                        <a role="button" class="btn btn-danger" asp-controller="Cadastros" asp-action="ApagarConfirmacao">Apagar</a>
-                    </div>
-                </td>
-            </tr>
+            @if (Model != null && Model.Any())
+            {
+                foreach (CadastroModel cadastro in Model)
+                {
+                    <tr>
+                        <td>@cadastro.Name</td>
+                        <td>@cadastro.Last_Name</td>
+                        <td>@cadastro.Idade</td>
+                        <td>@cadastro.CPF</td>
+                        <td>$@cadastro.Salario</td>
+                        <td>@cadastro.Cargo</td>
+                        <td>@cadastro.Setor</td> 
+                        <!--<td>__/__/__</td>-->
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a role="button" class="btn btn-primary" asp-route-id="@cadastro.Id" asp-controller="Cadastros" asp-action="Editar">Editar</a>
+                                <a role="button" class="btn btn-danger" asp-controller="Cadastros" asp-action="ApagarConfirmacao">Apagar</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
         </tbody>
     </table>
 
 </div>
-
 
 
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.13.1/datatables.min.js"></script>

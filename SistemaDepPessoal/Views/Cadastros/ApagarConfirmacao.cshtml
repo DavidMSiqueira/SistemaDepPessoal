@@ -4,7 +4,7 @@
 }
 
 <div class="text-center">
-    <h3>Realmente deseja apa gar o funcionario (Retonar o nome)?</h3>
+    <h3>Realmente deseja apa gar o funcionario (@Model.Name )?</h3>
 </div>
 <br />
 
@@ -16,5 +16,5 @@
     <br />
     <br />
     <a class="btn btn-primary" role="button" asp-controller="Cadastros" asp-action="Index">Cancelar exclusão</a>
-    <a class="btn btn-danger" role="button" asp-controller="Cadastros" asp-action="Apagar">Confirmar exclusão</a>
+    <a class="btn btn-danger" role="button" asp-controller="Cadastros" asp-action="Apagar" asp-route-id="@Model.Id">Confirmar exclusão</a>
 </div>

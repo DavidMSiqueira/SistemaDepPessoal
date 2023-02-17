@@ -9,12 +9,12 @@ namespace SistemaDepPessoal.Repositorio
 
         public CadastroRepositorio(DataContext dataContext)
         {
-            this._context = dataContext;
+            _context = dataContext;
         }
 
         public CadastroModel ListarPorId(int id)
         {
-            return _context.Cadastros.FirstOrDefault(predicate: x => x.Id == id);
+            return  _context.Cadastros.FirstOrDefault(predicate: x => x.Id == id); /*predicate:*/
         }
 
         public List<CadastroModel> BuscarTodos()
@@ -35,7 +35,7 @@ namespace SistemaDepPessoal.Repositorio
         {
             CadastroModel cadastroDB = ListarPorId(cadastro.Id);
 
-            if (cadastroDB == null) throw new System.Exception("Houvem um erro na atualização do cadastro");
+            if (cadastroDB == null) throw new Exception("Houvem um erro na atualização do cadastro");
 
             cadastroDB.Name = cadastro.Name;
             cadastroDB.Last_Name = cadastro.Last_Name;
@@ -49,6 +49,17 @@ namespace SistemaDepPessoal.Repositorio
             _context.SaveChanges();
 
             return cadastroDB;
+        }
+
+        public bool Apagar(int id)
+        {
+            CadastroModel cadastroDB = ListarPorId(id);
+
+            if (cadastroDB == null) throw new Exception("Houvem um erro ao excluir o cadastro");
+
+            _context.Cadastros.Remove(cadastroDB);
+            _context.SaveChanges();
+            return true;
         }
     }
 }

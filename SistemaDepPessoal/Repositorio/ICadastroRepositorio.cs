@@ -13,5 +13,6 @@ namespace SistemaDepPessoal.Repositorio
 
         CadastroModel Atualizar(CadastroModel cadastro);
 
+        bool Apagar(int id);
     }
 }

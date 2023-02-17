@@ -36,6 +36,13 @@ namespace SistemaDepPessoal.Controllers
             return View(cadastro);
         }
 
+        [HttpGet]
+        public IActionResult Apagar(int id)
+        {
+            _cadastroRepositorio.Apagar(id);
+            return RedirectToAction("Index");
+        }
+
         [HttpPost]
         public IActionResult Criar(CadastroModel cadastro)
         {
